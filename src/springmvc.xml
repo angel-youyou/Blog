@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="  
+        http://www.springframework.org/schema/beans   
+        http://www.springframework.org/schema/beans/spring-beans-3.0.xsd  
+        http://www.springframework.org/schema/context   
+        http://www.springframework.org/schema/context/spring-context-3.0.xsd  
+        http://www.springframework.org/schema/mvc   
+        http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd">
+        <!-- 配置自定义扫描的包 -->
+	<context:component-scan base-package="com.manager"></context:component-scan>
+	
+	<!-- 视图解析器 -->
+	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix" value="/WEB-INF/jsp/"></property>
+		<property name="suffix" value=".jsp"></property>
+	</bean>
+	
+	
+	<!-- 直接转发的界面 ,无需经过Handle-->
+	<mvc:view-controller path="/index" view-name="index" />
+	<mvc:view-controller path="/minefForUpdateBlog" view-name="minefForUpdateBlog" />
+	
+	
+	 <!-- 过滤静态资源 -->
+	<mvc:resources location="/css/" mapping="/css/**" />
+	<mvc:resources location="/images/" mapping="/images/**" />
+	<mvc:resources location="/js/" mapping="/js/**" />
+	<!-- Spring MVC注解功能 -->
+	<bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
+		
+	</bean>
+	<!-- 在实际开发中都需要配置mvc:annotation-driven 暂不清楚作用 -->
+	<mvc:annotation-driven></mvc:annotation-driven>
+</beans>  

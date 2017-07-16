@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<!-- 
+	1.操作数据库表的映射文件
+	2.namespace是映射文件的ID，必须与接口全类名一致
+	3.id必须与对应接口的某个方法名一致
+ -->
+
+<mapper namespace="com.manager.dao.ArticleMapper" >
+	<!-- 
+		1.#{id}相当于占位符，里面的ID可任意填写，最好与条件值相同
+		2.id="getFile"为sql语句的ID
+		3.parameterType为输入参数的类型
+		4.resultType为返回参数的类型
+	 -->
+		
+		
+		<!-- 有效配置begin -->
+		
+		
+		<!-- 配置Article类型的map -->	
+		<resultMap type="Article" id="ArticleResult">
+			<result column="id" property="id" />
+			<result column="author_id" property="author_id" />
+			<result column="updateTime" property="updateTime" />
+			<result column="content" property="content" />	
+			<result column="status" property="status" />	 
+		</resultMap>
+		<!-- 
+			1.查找t_file表中的所有数据
+			2. resultMap:返回map的类型
+			3.id需与sql接口名一致
+		-->
+		 	
+		 <!-- 搜索最新的博客 -->
+		  <select id="searchBlogByForIndex" resultMap="ArticleResult" parameterType="String">
+			select * from article where status=1 ORDER BY updateTime DESC
+		 </select>
+		
+</mapper>
